@@ -1,0 +1,17 @@
+{
+  "name": "tjee",
+  "version": "1.0.0",
+  "description": "automic check if has new public article from tjee.cn. If has, send email to me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Billy",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "moment": "^2.12.0",
+    "nodemailer": "^2.3.2",
+    "request-promise": "^3.0.0"
+  }
+}
