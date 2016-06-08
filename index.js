@@ -30,8 +30,8 @@ var mailOptions = {
 };
 
 var page = 'http://www.tjee.cn/index.portal?.pa=aT1QODA1NDkyJnQ9ciZzPW1heGltaXplZCZtPXZpZXc%3D&level=1';
-var yesterday = moment(new Date()).add(-1, 'days').format('YYYY-MM-DD');
-console.log('check date:', yesterday);
+var today = moment(new Date()).format('YYYY-MM-DD');
+console.log('check date:', today);
 var prefix = 'tjee-news';
 
 var options = {
@@ -45,9 +45,9 @@ function parse($, tr) {
   var newtime, title, uri;
   newtime = $(tr).find('span.newtime');
   newtime = newtime ? $(newtime.get(0)).text() : '';
-  // 只有昨天的新闻才发送邮件
-  if(newtime === yesterday) {
-    title = prefix + ': ' + '(' + yesterday + ') ' + $(tr).find('a').attr('title');
+  // 只有当天的新闻才发送邮件
+  if(newtime === today) {
+    title = prefix + ': ' + '(' + today + ') ' + $(tr).find('a').attr('title');
     uri = $(tr).find('a span').attr('onclick');
     uri = uri.split('"')[1];
     uri = url.resolve(page, uri);
