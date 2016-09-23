@@ -29,9 +29,10 @@ var mailOptions = {
   // html: '<b>Hello world 🐴</b>' // html body
 };
 
-var page = 'http://www.tjee.cn/index.portal?.pa=aT1QODA1NDkyJnQ9ciZzPW1heGltaXplZCZtPXZpZXc%3D&level=1';
+var page = 'http://tjee.tongji.edu.cn/index.portal?.pa=aT1QODA1NDkyJnQ9ciZzPW1heGltaXplZCZtPXZpZXc%3D&level=1';
 var today = moment(new Date()).format('YYYY-MM-DD');
 console.log('check date:', today);
+today = '2016-09-20';
 var prefix = 'tjee-news';
 
 var options = {
@@ -61,7 +62,13 @@ function parse($, tr) {
       }
     })
     .then(function(content) {
-      mailOptions.html = '<a href="' + uri + '" >原始链接</a><br/><br/>' + content('table[width="80%"]').html();
+      var html = content('table[width="80%"]').html();
+      var index;
+      if (!html){
+        console.log('no content');
+        return;
+      }
+      mailOptions.html = '<a href="' + uri + '" >原始链接</a><br/><br/>' + html;
       mailOptions.html += '<br/><br/><br/><br/><a href="' + uri + '" >原始链接</a>';
       transporter.sendMail(mailOptions, function(err, info) {
         if(err) return console.log(err);
